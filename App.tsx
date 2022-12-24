@@ -1,10 +1,14 @@
 import React, {FC} from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Alert, TouchableOpacity, StyleSheet, View, Text} from 'react-native';
 
 const app: FC = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.idle}>Idle</Text>
+      <TouchableOpacity
+        // style={styles.idle}
+        onPress={() => Alert.alert('Left button pressed')}>
+        <Text style={styles.idle}>Idle</Text>
+      </TouchableOpacity>
     </View>
   );
 };
