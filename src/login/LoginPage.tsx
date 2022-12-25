@@ -1,12 +1,6 @@
 import React, {FC} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  Alert,
-  Image,
-} from 'react-native';
+import {StyleSheet, View, Text, TouchableOpacity, Image} from 'react-native';
+import {oauthLogin} from './LoginEvent';
 
 const LoginPage: FC = () => {
   return (
@@ -16,7 +10,7 @@ const LoginPage: FC = () => {
         source={require('../resource/images/logo.png')}
       />
       <Text style={styles.title}>Idle</Text>
-      <TouchableOpacity onPress={() => Alert.alert('Left button pressed')}>
+      <TouchableOpacity onPress={oauthLogin}>
         <Image source={require('../resource/images/kakao.png')} />
       </TouchableOpacity>
     </View>
