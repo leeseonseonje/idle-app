@@ -11,10 +11,13 @@ import {
 const LoginPage: FC = () => {
   return (
     <View style={styles.container}>
-      <Image source={require('../resource/images/logo.png')} />
+      <Image
+        style={styles.logo}
+        source={require('../resource/images/logo.png')}
+      />
       <Text style={styles.title}>Idle</Text>
       <TouchableOpacity onPress={() => Alert.alert('Left button pressed')}>
-        <Text style={styles.loginButton}>Login</Text>
+        <Image source={require('../resource/images/kakao.png')} />
       </TouchableOpacity>
     </View>
   );
@@ -28,13 +31,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  logo: {
+    width: 250,
+    height: 250,
+  },
   title: {
     fontSize: 50,
     fontFamily: 'Maplestory OTF Bold',
-    marginBottom: 120,
+    marginBottom: 150,
     color: 'black',
-  },
-  loginButton: {
-    fontSize: 20,
   },
 });
