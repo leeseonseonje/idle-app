@@ -1,7 +1,9 @@
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import KakaoLogin from '../login/LoginEvent';
+import KakaoLogin from '../login/KakaoLogin';
 import LoginPage from '../login/LoginPage';
+import Naming from '../login/Naming';
+import MainPage from '../play/MainPage';
 
 const Stack = createStackNavigator();
 
@@ -10,6 +12,8 @@ const StackNavigation = () => {
     <Stack.Navigator>
       <Stack.Screen name="Login" component={LoginPage} />
       <Stack.Screen name="KakaoLogin" component={KakaoLogin} />
+      <Stack.Screen name="Naming" component={Naming} />
+      <Stack.Screen name="MainPage" component={MainPage} />
     </Stack.Navigator>
   );
 };

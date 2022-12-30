@@ -1,10 +1,9 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const tokenSaveAndUpdate = async (accessToken: string) => {
   await AsyncStorage.setItem('accessToken', accessToken);
-  console.log(`accesstoken${accessToken}`);
 };
 
 export const getToken = async () => {
-  // await AsyncStorage.getItem('accessToken');
+  return await AsyncStorage.getItem('accessToken');
 };

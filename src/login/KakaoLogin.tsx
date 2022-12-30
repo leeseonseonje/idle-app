@@ -8,14 +8,24 @@ const clientId = '7958b13d03a5d3da76452b89384cfa01';
 
 const redirectUri = `${Server.URL}/oauth/redirect`;
 
-const KakaoLogin = () => {
-  console.log('console');
-
+const KakaoLogin = ({navigation}: any) => {
   async function appLogin(code: string) {
     let response = await axios.get(`${Server.URL}/kakao?${code}`);
-    console.log(response.data.accessToken);
 
     tokenSaveAndUpdate(response.data.accessToken);
+
+    let nickName = response.data.nickName;
+    if (nickName) {
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'MainPage'}],
+      });
+    } else {
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'Naming'}],
+      });
+    }
   }
 
   return (
