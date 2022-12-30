@@ -1,28 +1,13 @@
-import React, {FC} from 'react';
-import {Alert, TouchableOpacity, StyleSheet, View, Text} from 'react-native';
+import React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import StackNavigation from './src/screens/Navigations';
 
-const app: FC = () => {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        // style={styles.idle}
-        onPress={() => Alert.alert('Left button pressed')}>
-        <Text style={styles.idle}>Idle</Text>
-      </TouchableOpacity>
-    </View>
+    <NavigationContainer>
+      <StackNavigation />
+    </NavigationContainer>
   );
 };
 
-export default app;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  idle: {
-    fontSize: 100,
-    textAlign: 'center',
-  },
-});
+export default App;
