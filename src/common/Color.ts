@@ -1,3 +1,5 @@
 export enum Color {
-  MainColor = '#B7F7FF',
+  // MainColor = '#58B1FF',
+  // MainColor = '#78dfff',
+  MainColor = '#61c9ce',
 }

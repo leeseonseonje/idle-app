@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import WebView from 'react-native-webview';
 import {Server} from '../common/Server';
-import {saveMember} from '../stores/MemberStore';
+import {saveMember} from '../stores/MemberStorage';
 
 const clientId = '7958b13d03a5d3da76452b89384cfa01';
 
