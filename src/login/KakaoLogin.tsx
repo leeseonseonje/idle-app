@@ -2,7 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import WebView from 'react-native-webview';
 import {Server} from '../common/Server';
-import {tokenSaveAndUpdate} from '../stores/MemberStore';
+import {saveMember} from '../stores/MemberStore';
 
 const clientId = '7958b13d03a5d3da76452b89384cfa01';
 
@@ -12,10 +12,11 @@ const KakaoLogin = ({navigation}: any) => {
   async function appLogin(code: string) {
     let response = await axios.get(`${Server.URL}/kakao?${code}`);
 
-    tokenSaveAndUpdate(response.data.accessToken);
+    let {memberId, nickname, accessToken} = response.data;
 
-    let nickName = response.data.nickName;
-    if (nickName) {
+    saveMember(memberId, nickname, accessToken);
+
+    if (nickname) {
       navigation.reset({
         index: 0,
         routes: [{name: 'MainPage'}],
