@@ -1,12 +1,30 @@
-import React from 'react';
+import axios from 'axios';
+import React, {useState} from 'react';
 import {Alert, StyleSheet, Text, View} from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import {Color} from '../common/Color';
 import {Font} from '../common/Font';
+import {Server} from '../common/Server';
+import {getMemberId, naming} from '../storages/MemberStorage';
 
-const Naming = () => {
-  function spaceCheck(text: string) {
-    Alert.alert(text);
+const Naming = ({navigation}: any) => {
+  const [nickname, setNickname] = useState('');
+
+  async function nicknameRegistration() {
+    try {
+      const response = await axios.post(`${Server.URL}/nickname`, {
+        memberId: await getMemberId(),
+        nickname: nickname,
+      });
+      naming(response.data);
+
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'MainPage'}],
+      });
+    } catch (error: any) {
+      Alert.alert(error.response.data);
+    }
   }
 
   return (
@@ -16,9 +34,9 @@ const Naming = () => {
       <TextInput
         style={styles.inputBox}
         placeholder="닉네임을 입력해주세요."
-        onChangeText={text => Alert.alert(text)}
+        onChangeText={text => setNickname(text)}
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={nicknameRegistration}>
         <Text style={styles.buttonText}>등록하기</Text>
       </TouchableOpacity>
     </View>
@@ -35,14 +53,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   title: {
-    fontSize: 70,
+    fontSize: 55,
     fontFamily: Font.MainLight,
     color: Color.MainColor,
     marginBottom: 50,
     marginTop: -150,
   },
   subTitle: {
-    fontSize: 30,
+    fontSize: 25,
     fontFamily: Font.MainLight,
     color: 'black',
     marginBottom: 10,

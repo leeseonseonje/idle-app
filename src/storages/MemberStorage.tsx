@@ -5,9 +5,13 @@ export const saveMember = async (
   nickname: string,
   accessToken: string,
 ) => {
-  await AsyncStorage.setItem('memberId', memberId.toString());
-  await AsyncStorage.setItem('nickname', nickname);
-  await AsyncStorage.setItem('accessToken', accessToken);
+  if (memberId && accessToken) {
+    await AsyncStorage.setItem('memberId', memberId.toString());
+    await AsyncStorage.setItem('accessToken', accessToken);
+  }
+  if (nickname) {
+    await AsyncStorage.setItem('nickname', nickname);
+  }
 };
 
 export const naming = async (nickname: string) => {
@@ -20,4 +24,12 @@ export const accessTokenReissue = async (accessToken: string) => {
 
 export const getToken = async () => {
   return await AsyncStorage.getItem('accessToken');
+};
+
+export const getMemberId = async () => {
+  return await AsyncStorage.getItem('memberId');
+};
+
+export const getNickname = async () => {
+  return await AsyncStorage.getItem('nickname');
 };

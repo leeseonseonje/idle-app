@@ -25,15 +25,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   title: {
-    fontSize: 70,
+    fontSize: 55,
     fontFamily: Font.MainLight,
     marginBottom: 30,
     color: Color.MainColor,
   },
   subTitle: {
-    fontSize: 30,
+    fontSize: 25,
     fontFamily: Font.MainLight,
-    marginBottom: 130,
+    marginBottom: 100,
     color: 'black',
   },
 });
