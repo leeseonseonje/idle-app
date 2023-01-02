@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import AxiosInterceptor, {axiosInstance} from '../common/AxiosInterceptor';
 import {Color} from '../common/Color';
 import {Font} from '../common/Font';
 import {getMemberId, getToken} from '../storages/MemberStorage';
@@ -14,7 +15,10 @@ const Start = ({navigation}: any) => {
 
     if (accessToken || memberId) {
       //token 검증
-      navigation.replace('MainPage');
+      try {
+        await (await ).post('/member/nickname');
+        navigation.replace('MainPage');
+      } catch (e) {}
     } else {
       navigation.replace('LoginPage');
     }

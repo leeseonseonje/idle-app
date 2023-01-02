@@ -12,7 +12,7 @@ const Naming = ({navigation}: any) => {
 
   async function nicknameRegistration() {
     try {
-      const response = await axios.post(`${Server.URL}/nickname`, {
+      const response = await axios.post(`${Server.URL}/member/nickname`, {
         memberId: await getMemberId(),
         nickname: nickname,
       });

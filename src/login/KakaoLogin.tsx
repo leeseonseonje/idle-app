@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React from 'react';
 import {Alert} from 'react-native';
-import {acc} from 'react-native-reanimated';
 import WebView from 'react-native-webview';
 import {Server} from '../common/Server';
 import {saveMember} from '../storages/MemberStorage';
@@ -13,7 +12,7 @@ const redirectUri = `${Server.URL}/oauth/redirect`;
 const KakaoLogin = ({navigation}: any) => {
   async function appLogin(code: string) {
     try {
-      let response = await axios.get(`${Server.URL}/kakao?${code}`);
+      let response = await axios.get(`${Server.URL}/oauth/kakao?${code}`);
 
       let {memberId, nickname, accessToken} = response.data;
 
