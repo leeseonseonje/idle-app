@@ -1,41 +1,46 @@
 import axios, {AxiosInstance} from 'axios';
-import {Alert} from 'react-native';
+import {getToken, tokenReissue} from '../storages/MemberStorage';
 import {Server} from './Server';
 
 const axiosInterceptor = async () => {
   let instance = axios.create({
     baseURL: Server.URL,
     headers: {
-      Authorization: null,
+      'Content-Type': 'application/json',
+      Authorization: await getToken(),
     },
   });
-  accessTokenValidationInterceptor(instance);
+  await accessTokenValidationInterceptor(instance);
   return instance;
 };
 
 const accessTokenValidationInterceptor = async (instance: AxiosInstance) => {
+  const accessToken = await getToken();
   instance.interceptors.response.use(
     config => {
-      console.log(config);
-
       return config;
     },
-    error => {
+    async error => {
       const status = error.response.status;
-      if (status === 403) {
-        Alert.alert('로그인 후 이용해 주세요.');
-      } else if (status === 401) {
-        // Alert.alert('로그인 후 이용해 주세요.');
+
+      if (status === 401) {
+        const reissueToken = await axios.get(
+          `${Server.URL}/oauth/kakao/reissue/${accessToken}`,
+        );
+
+        tokenReissue(reissueToken.data);
+
+        error.config.headers = {
+          'Content-Type': 'application/json',
+          Authorization: await getToken(),
+        };
+        const retryResponse = await axios.request(error.config);
+
+        return retryResponse;
       }
+      return Promise.reject(error);
     },
   );
 };
 
-export type LoginPageNavigation = {
-  LoginPage: undefined;
-  Start: undefined;
-  MainPage: undefined;
-};
-
 export const axiosInstance = axiosInterceptor();
-export default LoginPageRedirection;

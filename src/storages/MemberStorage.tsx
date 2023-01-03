@@ -14,6 +14,12 @@ export const saveMember = async (
   }
 };
 
+export const tokenReissue = async (accessToken: string) => {
+  if (accessToken) {
+    await AsyncStorage.setItem('accessToken', accessToken);
+  }
+};
+
 export const naming = async (nickname: string) => {
   await AsyncStorage.setItem('nickname', nickname);
 };

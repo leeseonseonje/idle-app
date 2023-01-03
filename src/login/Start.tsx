@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import AxiosInterceptor, {axiosInstance} from '../common/AxiosInterceptor';
+import {axiosInstance} from '../common/AxiosInterceptor';
 import {Color} from '../common/Color';
 import {Font} from '../common/Font';
 import {getMemberId, getToken} from '../storages/MemberStorage';
@@ -10,15 +10,27 @@ const Start = ({navigation}: any) => {
     const accessToken = await getToken();
     const memberId = await getMemberId();
 
-    console.log(accessToken);
-    console.log(memberId);
-
     if (accessToken || memberId) {
-      //token 검증
       try {
-        await (await ).post('/member/nickname');
+        const response = await (
+          await axiosInstance
+        ).post('/member/nickname', {
+          memberId: '1',
+          nickname: 'name',
+        });
+        console.log(response.data);
+
         navigation.replace('MainPage');
-      } catch (e) {}
+      } catch (error: any) {
+        const status = error.response.status;
+        console.log(error);
+
+        if (status === 403) {
+          navigation.replace('LoginPage');
+        } else if (status === 401) {
+          navigation.replace('MainPage');
+        }
+      }
     } else {
       navigation.replace('LoginPage');
     }
