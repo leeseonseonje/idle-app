@@ -1,38 +1,20 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {axiosInstance} from '../common/AxiosInterceptor';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {Color} from '../common/Color';
 import {Font} from '../common/Font';
-import {getMemberId, getToken} from '../storages/MemberStorage';
+import {getMemberId, getNickname, getToken} from '../storages/MemberStorage';
 
 const Start = ({navigation}: any) => {
   async function loginCheck() {
     const accessToken = await getToken();
     const memberId = await getMemberId();
+    const nickname = await getNickname();
 
-    if (accessToken || memberId) {
-      try {
-        const response = await (
-          await axiosInstance
-        ).post('/member/nickname', {
-          // memberId: '1',
-          // nickname: 'name',
-        });
-        console.log(response.data);
-
+    if (accessToken && memberId) {
+      if (nickname) {
         navigation.replace('MainPage');
-      } catch (error: any) {
-        const status = error.response.status;
-        console.log(`error === ${error}`);
-        if (status === 500) {
-          navigation.navigate('Naming');
-        }
-
-        if (status === 403) {
-          navigation.replace('LoginPage');
-        } else if (status === 401) {
-          navigation.replace('MainPage');
-        }
+      } else {
+        navigation.replace('Naming');
       }
     } else {
       navigation.replace('LoginPage');
@@ -40,12 +22,16 @@ const Start = ({navigation}: any) => {
   }
 
   useEffect(() => {
-    loginCheck();
+    //loginCheck();
   });
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Start</Text>
+      <Image
+        style={styles.logo}
+        source={require('../resource/images/newlogo.png')}
+      />
+      <Text style={styles.title}>Idle :)</Text>
     </View>
   );
 };
@@ -59,11 +45,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
+  logo: {
+    marginTop: -150,
+    width: 250,
+    height: 250,
+  },
   title: {
     fontSize: 55,
     fontFamily: Font.MainLight,
-    color: Color.MainColor,
-    marginBottom: 50,
-    marginTop: -150,
+    color: 'black',
   },
 });
