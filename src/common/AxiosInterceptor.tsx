@@ -1,5 +1,10 @@
 import axios, {AxiosInstance} from 'axios';
-import {getToken, tokenReissue} from '../storages/MemberStorage';
+import {
+  getToken,
+  tokenReissue,
+  logout,
+  getMemberId,
+} from '../storages/MemberStorage';
 import {Server} from './Server';
 
 const axiosInterceptor = async () => {
@@ -37,6 +42,11 @@ const accessTokenValidationInterceptor = async (instance: AxiosInstance) => {
         const retryResponse = await axios.request(error.config);
 
         return retryResponse;
+      } else if (status === 403) {
+        const memberId = await getMemberId();
+        await axios.get(`${Server.URL}/member/logout/${memberId}`);
+        logout();
+        return Promise.reject(error);
       }
       return Promise.reject(error);
     },

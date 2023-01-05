@@ -39,3 +39,7 @@ export const getMemberId = async () => {
 export const getNickname = async () => {
   return await AsyncStorage.getItem('nickname');
 };
+
+export const logout = async () => {
+  return await AsyncStorage.clear();
+};

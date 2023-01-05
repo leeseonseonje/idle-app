@@ -15,15 +15,18 @@ const Start = ({navigation}: any) => {
         const response = await (
           await axiosInstance
         ).post('/member/nickname', {
-          memberId: '1',
-          nickname: 'name',
+          // memberId: '1',
+          // nickname: 'name',
         });
         console.log(response.data);
 
         navigation.replace('MainPage');
       } catch (error: any) {
         const status = error.response.status;
-        console.log(error);
+        console.log(`error === ${error}`);
+        if (status === 500) {
+          navigation.navigate('Naming');
+        }
 
         if (status === 403) {
           navigation.replace('LoginPage');
