@@ -22,7 +22,7 @@ const Start = ({navigation}: any) => {
   }
 
   useEffect(() => {
-    //loginCheck();
+    loginCheck();
   });
 
   return (
@@ -47,12 +47,12 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginTop: -150,
-    width: 250,
-    height: 250,
+    width: 300,
+    height: 300,
   },
   title: {
     fontSize: 55,
     fontFamily: Font.MainLight,
-    color: 'black',
+    color: Color.MainColor,
   },
 });
