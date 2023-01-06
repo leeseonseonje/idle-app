@@ -12,7 +12,7 @@ const Start = ({navigation}: any) => {
 
     if (accessToken && memberId) {
       if (nickname) {
-        navigation.replace('MainPage');
+        navigation.replace('Main');
       } else {
         navigation.replace('Naming');
       }

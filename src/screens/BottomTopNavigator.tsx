@@ -1,7 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import LoginPage from '../login/LoginPage';
-import Naming from '../login/Naming';
+import {Image} from 'react-native';
 import MainPage from '../play/MainPage';
 
 const Tab = createBottomTabNavigator();
@@ -13,30 +12,19 @@ const BottomNavigator = () => {
         name="Home"
         component={MainPage}
         options={{
-          title: '홈',
+          tabBarIcon: () => {
+            return (
+              <Image
+                style={{width: 50, height: 50}}
+                source={require('../resource/images/newlogo.png')}
+              />
+            );
+          },
         }}
       />
-      <Tab.Screen
-        name="Search"
-        component={Naming}
-        options={{
-          title: '알림',
-        }}
-      />
-      <Tab.Screen
-        name="Notification"
-        component={LoginPage}
-        options={{
-          title: '검색',
-        }}
-      />
-      <Tab.Screen
-        name="Message"
-        component={MainPage}
-        options={{
-          title: '메시지',
-        }}
-      />
+      <Tab.Screen name="Search" component={MainPage} />
+      <Tab.Screen name="Notification" component={MainPage} />
+      <Tab.Screen name="Message" component={MainPage} />
     </Tab.Navigator>
   );
 };

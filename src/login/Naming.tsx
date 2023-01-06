@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     fontFamily: Font.MainLight,
     color: Color.MainColor,
     marginBottom: 50,
-    marginTop: -150,
+    marginTop: -50,
   },
   subTitle: {
     fontSize: 25,
