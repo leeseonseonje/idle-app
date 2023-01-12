@@ -15,7 +15,7 @@ const BottomNavigator = () => {
           tabBarIcon: () => {
             return (
               <Image
-                style={{width: 50, height: 50}}
+                style={{width: 40, height: 40}}
                 source={require('../resource/images/newlogo.png')}
               />
             );
