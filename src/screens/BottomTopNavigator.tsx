@@ -7,7 +7,7 @@ const Tab = createBottomTabNavigator();
 
 const BottomNavigator = () => {
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator initialRouteName="홈">
       <Tab.Screen
         name="상점"
         component={MainPage}

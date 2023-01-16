@@ -1,6 +1,6 @@
 import React from 'react';
 import {useAsync} from 'react-async';
-import {Alert, Button, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import {Color} from '../common/Color';
 import {Font} from '../common/Font';
 import {getNickname} from '../storages/MemberStorage';
@@ -10,11 +10,14 @@ const MainPage = () => {
 
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.title}>{nickname}</Text> */}
-      {/* <Button title="main" onPress={() => Alert.alert('Main Page!')} /> */}
       <Image
-        style={styles.logo}
-        source={require('../resource/images/newlogo.png')}
+        style={styles.backgroundImage}
+        source={require('../resource/images/background.png')}
+      />
+      <Text style={styles.nickname}>{nickname}</Text>
+      <Image
+        style={styles.character}
+        source={require('../resource/images/character.png')}
       />
     </View>
   );
@@ -29,11 +32,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'white',
   },
-  title: {
-    fontSize: 55,
+  backgroundImage: {
+    marginTop: -50,
+    width: 440,
+    height: 400,
+    resizeMode: 'contain',
+  },
+  nickname: {
+    fontSize: 30,
+    marginLeft: 15,
     fontFamily: Font.MainLight,
-    color: Color.MainColor,
-    marginBottom: 50,
-    marginTop: -150,
+    color: 'black',
+    marginBottom: -60,
+  },
+  character: {
+    marginLeft: 15,
+    width: 350,
+    height: 350,
+    resizeMode: 'contain',
   },
 });
