@@ -10,8 +10,12 @@ const MainPage = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{nickname}</Text>
-      <Button title="main" onPress={() => Alert.alert('Main Page!')} />
+      {/* <Text style={styles.title}>{nickname}</Text> */}
+      {/* <Button title="main" onPress={() => Alert.alert('Main Page!')} /> */}
+      <Image
+        style={styles.logo}
+        source={require('../resource/images/newlogo.png')}
+      />
     </View>
   );
 };

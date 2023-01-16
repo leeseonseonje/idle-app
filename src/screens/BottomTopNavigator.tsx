@@ -9,7 +9,7 @@ const BottomNavigator = () => {
   return (
     <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
-        name="Home"
+        name="상점"
         component={MainPage}
         options={{
           tabBarIcon: () => {
@@ -22,9 +22,9 @@ const BottomNavigator = () => {
           },
         }}
       />
-      <Tab.Screen name="Search" component={MainPage} />
-      <Tab.Screen name="Notification" component={MainPage} />
-      <Tab.Screen name="Message" component={MainPage} />
+      <Tab.Screen name="홈" component={MainPage} />
+      <Tab.Screen name="가방" component={MainPage} />
+      <Tab.Screen name="합성" component={MainPage} />
     </Tab.Navigator>
   );
 };
