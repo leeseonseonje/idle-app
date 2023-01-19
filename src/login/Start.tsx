@@ -1,7 +1,9 @@
+import axios from 'axios';
 import React, {useEffect} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {Color} from '../common/Color';
 import {Font} from '../common/Font';
+import {Server} from '../common/Server';
 import {getMemberId, getNickname, getToken} from '../storages/MemberStorage';
 
 const Start = ({navigation}: any) => {
@@ -11,10 +13,19 @@ const Start = ({navigation}: any) => {
     const nickname = await getNickname();
 
     if (accessToken && memberId) {
-      if (nickname) {
-        navigation.replace('Main');
-      } else {
-        navigation.replace('Naming');
+      try {
+        await axios.get(`${Server.URL}/oauth/kakao/valid/token/${accessToken}`);
+
+        if (nickname) {
+          navigation.replace('Main');
+        } else {
+          navigation.replace('Naming');
+        }
+      } catch (error: any) {
+        const status = error.response.status;
+        if (status === 401) {
+          navigation.replace('LoginPage');
+        }
       }
     } else {
       navigation.replace('LoginPage');
