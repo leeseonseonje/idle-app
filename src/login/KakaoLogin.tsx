@@ -2,12 +2,11 @@ import axios from 'axios';
 import React from 'react';
 import {Alert} from 'react-native';
 import WebView from 'react-native-webview';
+import {Oauth} from '../common/Oauth';
 import {Server} from '../common/Server';
 import {saveMember} from '../storages/MemberStorage';
 
-const clientId = '7958b13d03a5d3da76452b89384cfa01';
-
-const redirectUri = `${Server.URL}/oauth/redirect`;
+const redirectUri = `${Server.URL}${Oauth.KAKAO_REDIRECT_URI}`;
 
 const KakaoLogin = ({navigation}: any) => {
   async function appLogin(code: string) {
@@ -37,7 +36,7 @@ const KakaoLogin = ({navigation}: any) => {
   return (
     <WebView
       source={{
-        uri: `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}`,
+        uri: `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${Oauth.KAKAO_CLIENTID}&redirect_uri=${redirectUri}`,
       }}
       injectedJavaScript={
         "window.ReactNativeWebView.postMessage('message from webView')"
