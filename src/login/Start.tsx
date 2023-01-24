@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import React, {useEffect} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
@@ -8,6 +9,7 @@ import {getMemberId, getNickname, getToken} from '../storages/MemberStorage';
 
 const Start = ({navigation}: any) => {
   async function loginCheck() {
+    await AsyncStorage.clear();
     const accessToken = await getToken();
     const memberId = await getMemberId();
     const nickname = await getNickname();
@@ -23,6 +25,8 @@ const Start = ({navigation}: any) => {
         }
       } catch (error: any) {
         const status = error.response.status;
+        console.log(status);
+
         if (status === 401) {
           navigation.replace('LoginPage');
         }

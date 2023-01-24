@@ -1,15 +1,15 @@
 import React from 'react';
 import {useAsync} from 'react-async';
 import {Image, StyleSheet, Text, View} from 'react-native';
-import {Color} from '../common/Color';
 import {Font} from '../common/Font';
 import {getNickname} from '../storages/MemberStorage';
+import Money from './Money';
 
 const MainPage = () => {
   let nickname = useAsync({promiseFn: getNickname}).data;
-
   return (
     <View style={styles.container}>
+      <Money />
       <Image
         style={styles.backgroundImage}
         source={require('../resource/images/background.png')}
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     marginTop: -50,
     width: 440,
-    height: 400,
+    height: 370,
     resizeMode: 'contain',
   },
   nickname: {

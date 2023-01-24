@@ -10,26 +10,28 @@ const redirectUri = `${Server.URL}${Oauth.KAKAO_REDIRECT_URI}`;
 
 const KakaoLogin = ({navigation}: any) => {
   async function appLogin(code: string) {
-    try {
-      let response = await axios.get(`${Server.URL}/oauth/kakao?${code}`);
+    if (code.startsWith('code')) {
+      try {
+        let response = await axios.get(`${Server.URL}/oauth/kakao?${code}`);
 
-      let {memberId, nickname, accessToken} = response.data;
+        let {memberId, nickname, accessToken} = response.data;
 
-      saveMember(memberId, nickname, accessToken);
+        saveMember(memberId, nickname, accessToken);
 
-      if (nickname) {
-        navigation.reset({
-          index: 0,
-          routes: [{name: 'MainPage'}],
-        });
-      } else {
-        navigation.reset({
-          index: 0,
-          routes: [{name: 'Naming'}],
-        });
+        if (nickname) {
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'Main'}],
+          });
+        } else {
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'Naming'}],
+          });
+        }
+      } catch (error: any) {
+        Alert.alert(error.response.data);
       }
-    } catch (error: any) {
-      Alert.alert(error.response.data);
     }
   }
 

@@ -12,7 +12,7 @@ const Naming = ({navigation}: any) => {
 
   async function nicknameRegistration() {
     try {
-      const response = await axios.post(`${Server.URL}/member/nickname`, {
+      const response = await axios.post(`${Server.URL}/members/nickname`, {
         memberId: await getMemberId(),
         nickname: nickname,
       });
@@ -20,7 +20,7 @@ const Naming = ({navigation}: any) => {
 
       navigation.reset({
         index: 0,
-        routes: [{name: 'MainPage'}],
+        routes: [{name: 'Main'}],
       });
     } catch (error: any) {
       Alert.alert(error.response.data);
