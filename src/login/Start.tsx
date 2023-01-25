@@ -9,7 +9,7 @@ import {getMemberId, getNickname, getToken} from '../storages/MemberStorage';
 
 const Start = ({navigation}: any) => {
   async function loginCheck() {
-    await AsyncStorage.clear();
+    // await AsyncStorage.clear();
     const accessToken = await getToken();
     const memberId = await getMemberId();
     const nickname = await getNickname();
@@ -17,7 +17,6 @@ const Start = ({navigation}: any) => {
     if (accessToken && memberId) {
       try {
         await axios.get(`${Server.URL}/oauth/kakao/valid/token/${accessToken}`);
-
         if (nickname) {
           navigation.replace('Main');
         } else {

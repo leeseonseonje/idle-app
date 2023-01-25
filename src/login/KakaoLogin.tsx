@@ -16,8 +16,7 @@ const KakaoLogin = ({navigation}: any) => {
 
         let {memberId, nickname, accessToken} = response.data;
 
-        saveMember(memberId, nickname, accessToken);
-
+        await saveMember(memberId, nickname, accessToken);
         if (nickname) {
           navigation.reset({
             index: 0,

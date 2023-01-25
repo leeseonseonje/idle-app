@@ -45,15 +45,14 @@ export default Money;
 
 const styles: any = {
   container: {
-    flex: 1,
     flexDirection: 'row',
     marginLeft: -250,
   },
   amount: {
     fontSize: 20,
     fontFamily: Font.MainLight,
-    marginLeft: -15,
     marginTop: 27,
+    marginLeft: -15,
     color: 'black',
   },
 };

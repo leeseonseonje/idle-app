@@ -5,10 +5,10 @@ import Money from './src/play/Money';
 
 const App = () => {
   return (
-    // <NavigationContainer>
-    //   <StackNavigation />
-    // </NavigationContainer>
-    <Money />
+    <NavigationContainer>
+      <StackNavigation />
+    </NavigationContainer>
+    // <Money />
   );
 };
 

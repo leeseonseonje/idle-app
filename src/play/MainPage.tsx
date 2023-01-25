@@ -4,21 +4,19 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {Font} from '../common/Font';
 import {getNickname} from '../storages/MemberStorage';
 import Money from './Money';
+import Item from './Item';
 
 const MainPage = () => {
   let nickname = useAsync({promiseFn: getNickname}).data;
   return (
     <View style={styles.container}>
+      <Text style={styles.nickname}>{nickname}</Text>
       <Money />
       <Image
         style={styles.backgroundImage}
         source={require('../resource/images/background.png')}
       />
-      <Text style={styles.nickname}>{nickname}</Text>
-      <Image
-        style={styles.character}
-        source={require('../resource/images/character.png')}
-      />
+      <Item />
     </View>
   );
 };
@@ -28,22 +26,19 @@ export default MainPage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
   },
   backgroundImage: {
-    marginTop: -50,
+    marginTop: -30,
     width: 440,
-    height: 370,
+    height: 300,
     resizeMode: 'contain',
   },
   nickname: {
-    fontSize: 30,
-    marginLeft: 15,
+    fontSize: 24,
     fontFamily: Font.MainLight,
     color: 'black',
-    marginBottom: -60,
   },
   character: {
     marginLeft: 15,
