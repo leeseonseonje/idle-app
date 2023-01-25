@@ -7,27 +7,29 @@ import {useAsync} from 'react-async';
 
 const getWearItem = async () => {
   const memberId = await getMemberId();
+  console.log(memberId);
   try {
     const response = await axios.get(
       `${Server.URL}/members/${memberId}/items/wear`,
     );
 
-    console.log(memberId);
-    return response.data;
+    let {name, grade} = response.data.weapon;
+
+    const imageSrc = require(`../resource/images/weapons/${name}-${grade}.png`);
+
+    return imageSrc;
   } catch (e: any) {
-    Alert.alert(e.response.data);
-    return e.response.data;
+    if (e.response.status === 400) {
+      return '';
+    }
+    return e.response.status;
   }
 };
 const Item = () => {
-  let item = useAsync({promiseFn: getNickname}).data;
-  console.log(item);
+  let item = useAsync({promiseFn: getWearItem}).data;
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.weapon}
-        source={require('../resource/images/weapons/axe-end.png')}
-      />
+      <Image style={styles.weapon} source={item} />
       <Image
         style={styles.character}
         source={require('../resource/images/character.png')}
