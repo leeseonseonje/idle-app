@@ -1,9 +1,10 @@
 import {Alert, Image, View} from 'react-native';
 import React from 'react';
-import {getMemberId, getNickname} from '../storages/MemberStorage';
+import {getMemberId} from '../storages/MemberStorage';
 import axios from 'axios';
 import {Server} from '../common/Server';
 import {useAsync} from 'react-async';
+import {itemImages} from './ItemImages';
 
 const getWearItem = async () => {
   const memberId = await getMemberId();
@@ -15,9 +16,7 @@ const getWearItem = async () => {
 
     let {name, grade} = response.data.weapon;
 
-    const imageSrc = require(`../resource/images/weapons/${name}-${grade}.png`);
-
-    return imageSrc;
+    return itemImages(name, grade);
   } catch (e: any) {
     if (e.response.status === 400) {
       return '';
