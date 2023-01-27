@@ -4,7 +4,6 @@ import KakaoLogin from '../login/KakaoLogin';
 import LoginPage from '../login/LoginPage';
 import Naming from '../login/Naming';
 import Start from '../login/Start';
-import MainPage from '../play/MainPage';
 import BottomNavigator from './BottomTopNavigator';
 
 const Stack = createStackNavigator();

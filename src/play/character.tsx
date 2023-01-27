@@ -1,4 +1,4 @@
-import {Alert, Image, View} from 'react-native';
+import {Image, View} from 'react-native';
 import React from 'react';
 import {getMemberId} from '../storages/MemberStorage';
 import axios from 'axios';
@@ -42,10 +42,10 @@ export default Item;
 const styles: any = {
   container: {
     flexDirection: 'row',
-    marginLeft: 50,
+    // marginLeft: 50,
   },
   weapon: {
-    marginRight: -220,
+    marginRight: '-55%',
     width: 250,
     height: 250,
     resizeMode: 'contain',
