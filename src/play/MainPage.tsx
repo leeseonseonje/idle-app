@@ -10,12 +10,12 @@ const MainPage = () => {
   let nickname = useAsync({promiseFn: getNickname}).data;
   return (
     <View style={styles.container}>
+      <Text style={styles.nickname}>{nickname}</Text>
       <Money />
       <Image
         style={styles.backgroundImage}
         source={require('../resource/images/background.png')}
       />
-      <Text style={styles.nickname}>{nickname}</Text>
       <Item />
     </View>
   );
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontFamily: Font.MainLight,
     color: 'black',
-    marginLeft: '15%',
   },
   character: {
     marginLeft: 15,
