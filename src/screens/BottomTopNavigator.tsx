@@ -3,6 +3,7 @@ import React from 'react';
 import {Image} from 'react-native';
 import MainPage from '../play/MainPage';
 import ItemStore from '../store/ItemStore';
+import Synthesis from '../synthesis/Synthesis';
 
 const Tab = createBottomTabNavigator();
 
@@ -58,7 +59,7 @@ const BottomNavigator = () => {
       />
       <Tab.Screen
         name="합성"
-        component={MainPage}
+        component={Synthesis}
         options={{
           tabBarIcon: () => {
             return (
