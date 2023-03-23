@@ -9,7 +9,7 @@ import {getMemberId, getNickname, getToken} from '../storages/MemberStorage';
 
 const Start = ({navigation}: any) => {
   async function loginCheck() {
-    // await AsyncStorage.clear();
+    await AsyncStorage.clear();
     const accessToken = await getToken();
     const memberId = await getMemberId();
     const nickname = await getNickname();

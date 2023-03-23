@@ -2,6 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {Image} from 'react-native';
 import MainPage from '../play/MainPage';
+import ItemStore from '../store/ItemStore';
 
 const Tab = createBottomTabNavigator();
 
@@ -15,7 +16,7 @@ const BottomNavigator = () => {
       }}>
       <Tab.Screen
         name="상점"
-        component={MainPage}
+        component={ItemStore}
         options={{
           tabBarIcon: () => {
             return (

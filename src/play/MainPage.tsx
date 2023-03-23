@@ -4,7 +4,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import {Font} from '../common/Font';
 import {getNickname} from '../storages/MemberStorage';
 import Money from './Money';
-import Item from './character';
+import Item from './Character';
 
 const MainPage = () => {
   let nickname = useAsync({promiseFn: getNickname}).data;
